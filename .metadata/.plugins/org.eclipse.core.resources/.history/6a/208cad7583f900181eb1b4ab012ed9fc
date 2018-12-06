@@ -52,8 +52,8 @@ public class LoanCalculatorController {
 						lblResult.setText("The result is: " + result);
 				}
 			}
-		catch(Exception e) {
-			lblResult.setText("Enter the values in fields!");
-		}
+			catch(Exception e) {
+				lblResult.setText("Enter the values in fields!");
+			}
 	}
 }

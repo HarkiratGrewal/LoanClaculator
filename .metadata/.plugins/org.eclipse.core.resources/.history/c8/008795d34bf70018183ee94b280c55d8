@@ -1,0 +1,126 @@
+package application;
+
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.*;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import java.awt.Button;
+//import javafx.scene.*;
+//import javafx.scene.control.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class LoanPaymentCalculator implements ActionListener {
+
+	@FXML
+    Label lblTitle;
+
+    @FXML
+    Label lblLoanAmount;
+
+    @FXML
+    TextField txtLoanAmount;
+
+    @FXML
+    Label lblInterestRate;
+
+    @FXML
+    TextField txtInterestRate;
+
+    @FXML
+    Label lblDuration;
+
+    @FXML
+    TextField txtDuration;
+
+    @FXML
+    Label lblMonthlyInstallments;
+
+    @FXML
+    Button btnClick;
+    
+    @FXML
+    Label lblResult;
+    
+    
+    public ActionListener getBtnClickAction(ActionEvent e) {
+    	btnClick();
+    	
+		return e;
+	}	//	getButtonClickAction
+    
+//    ActionListener btnClickAction = new ActionListener() {
+//		
+//		@Override
+//		public void actionPerformed(ActionEvent e) {
+//			btnClick();
+//		}
+//	};
+    
+    @FXML
+    void btnClick() {
+    	if(loanAmount < 0) {
+    		lblResult.setText("Loan amount should be positive!");
+    	}
+    	else if(interestRate < 2 || interestRate > 5) {
+    		lblResult.setText("Interest rate should be between 2 and 5!");
+    	}
+    	else if(duration < 3 || duration > 7) {
+    		lblResult.setText("Duration should be between 3 and 7!");
+    	}
+    	else {
+    		Calculate();
+    		String answer = String.valueOf(Calculate());
+    		lblResult.setText(answer);
+    	}
+    }	//	btnClick
+    
+    //	Getting text and conversion
+    int loanAmount = Integer.parseInt(txtLoanAmount.getText());
+    double interestRate = Double.parseDouble(txtInterestRate.getText());
+    int duration = Integer.parseInt(txtDuration.getText());
+    
+    public double Calculate() {
+    	double interest = (loanAmount * interestRate * duration) / 100;
+    	double amount = loanAmount + interest;
+    	double calculation = amount/12;
+    	return calculation; 
+    }	//	Calculate
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+//    @FXML
+//    void txtDuration(ActionEvent event) {
+//    	
+//    }
+//
+//    @FXML
+//    void txtInterestRate(ActionEvent event) {
+//    	
+//    }
+//
+//    @FXML
+//    void txtLoanAmount(ActionEvent event) {
+//    	
+//    }
+//
+//    @FXML
+//    void txtMonthlyInstallments(ActionEvent event) {
+//    	
+//    }
+
+}
